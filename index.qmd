@@ -1,6 +1,6 @@
 ---
 title: "Simulation"
-author: "Your Name Here"
+author: "Alisha L Schaefer"
 format: html
 ---
 
@@ -22,7 +22,24 @@ Remember to set your seeds for these exercises so that you get the same answer e
 
 4. What is the average error from using a $n=1000$ simulation instead of a numerical calculation for the probability that $x>1$? Write a function to calculate the error from one simulation, and evaluate that function 100 times to calculate the expected error from using a simulation estimate rather than deterministic numerical integration.
 
+```{r}
+library(dplyr)
+library(purrr)
+library(ggplot2)
 
+set.seed(57391845)
+
+
+exp_draw <- (tibble(
+  x = rexp(1000, rate = 3))
+)
+
+exp_density <- ggplot(exp_draw, aes(x = x)) +
+  geom_density(color = 'blue') +
+  geom_function(fun=dexp, color = 'hotpink', args = list(rate=3))
+exp_density
+
+```
 
 
 ## Gamma Distribution
